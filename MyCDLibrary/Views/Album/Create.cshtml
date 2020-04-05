@@ -1,0 +1,31 @@
+﻿@model MyCDLibrary.Entities.Album
+
+@{
+    ViewBag.Title = "Add album";
+}
+
+<h1>Create an new album to add to your library</h1>
+<form asp-action="Create">
+    <div>
+        <label asp-for="Artist"></label>
+        <input asp-for="Artist" />
+        <span asp-validation-for="Artist"></span>
+    </div>
+    <div>
+        <label asp-for="Title"></label>
+        <input asp-for="Title" />
+        <span asp-validation-for="Title"></span>
+    </div>
+    <div>
+        <label asp-for="Rating"></label>
+        <select asp-for="Rating" asp-items="Html.GetEnumSelectList<AlbumRating>()"></select>
+    </div>
+    <div>
+        <label asp-for="ReleaseDate"></label>
+        <input type="date" asp-for="ReleaseDate" />
+        <span asp-validation-for="ReleaseDate"></span>
+    </div>
+    <div>
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>

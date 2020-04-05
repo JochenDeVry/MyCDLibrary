@@ -1,0 +1,43 @@
+﻿@model MyCDLibrary.Entities.Album
+
+@{
+    if (Model == null)
+    {
+        ViewBag.Title = "Invalid ID";
+    }
+    else
+    {
+        ViewBag.Title = @Model.Title + " - " + @Model.Artist;
+    }
+}
+
+@{
+    if (Model == null)
+    {
+        <div>No album with this ID could be found in the database.</div>
+    }
+    else
+    {
+        <h1>@Model.Title by @Model.Artist</h1>
+        <h2>Tracklist</h2>
+        if (Model.TrackList != null)
+        {
+            int trackNumber = 1;
+            foreach (var track in Model.TrackList)
+            {
+                <div>@trackNumber - @track.ToString()</div>
+                trackNumber++;
+            }
+        }
+        else
+        {
+            <div>No tracks provided</div>
+        }
+        <br />
+        <div>Album rating: @Model.Rating</div>
+    }
+}
+<br />
+@Html.ActionLink("Back to album list via this ActionLink", "List")
+<br />
+<a asp-action="List">Back to album list via this TagHelper</a>

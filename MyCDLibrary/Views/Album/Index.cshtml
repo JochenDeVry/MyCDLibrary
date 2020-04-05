@@ -1,0 +1,56 @@
+﻿@model MyCDLibrary.ViewModels.AlbumViewModel
+
+@{
+    ViewBag.Title = "Your album collection";
+}
+
+<h1>This is an overview of all your albums</h1>
+<h2>Quote of the day: @Model.CurrentQuote</h2>
+<table>
+    <tr>
+        <td>Id</td>
+        <td>Title</td>
+        <td>Artist</td>
+        <td>Released</td>
+        <td>Tracklist</td>
+    </tr>
+    <br />
+    @foreach (var album in Model.Albums)
+    {
+        <tr>
+            <td>@album.Id</td>
+            <td><a asp-action="Detail" asp-route-id="@album.Id">@album.Title</a></td>
+            <td>@album.Artist</td>
+            @{
+                if (@album.ReleaseDate != null)
+                {
+                    <td>@album.ReleaseDate</td>
+                }
+                else
+                {
+                    <td>Release date unknown</td>
+                }
+            }
+            @{
+                if (@album.TrackList != null)
+                {
+                    <td>
+                        @foreach (var track in album.TrackList)
+                        {
+                        <td>@track</td>
+                    }
+                        </td>
+                    }
+                    else
+                    {
+                        <td>No tracks provided</td>
+                    }
+            }
+        </tr>
+    }
+</table>
+<br />
+<a asp-action="Create">Add album...</a><br/>
+@section footer{ 
+    <div>@DateTime.Now</div>
+}
