@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyCDLibrary.Services
 {
@@ -28,6 +29,13 @@ namespace MyCDLibrary.Services
         public IEnumerable<Album> GetAll()
         {
             return _context.Albums.OrderBy(a => a.Artist);
+        }
+
+        public void Update(Album album)
+        {
+            var entry = _context.Entry(album);
+            entry.State = EntityState.Modified;
+            _context.SaveChanges();
         }
     }
 }

@@ -6,6 +6,8 @@
 
 <h1>This is an overview of all your albums</h1>
 <h2>Quote of the day: @Model.CurrentQuote</h2>
+<a asp-action="Create">Add album...</a>
+<br />
 <table>
     <tr>
         <td>Id</td>
@@ -50,7 +52,8 @@
     }
 </table>
 <br />
-<a asp-action="Create">Add album...</a><br/>
-@section footer{ 
+<a asp-action="Create">Add album...</a>
+<br />
+@section footer{
     <div>@DateTime.Now</div>
 }

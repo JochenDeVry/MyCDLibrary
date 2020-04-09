@@ -33,5 +33,10 @@ namespace MyCDLibrary.Services
         {
             return _albums.OrderBy(a => a.Title);
         }
+
+        public void Update(Album album)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

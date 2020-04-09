@@ -38,6 +38,8 @@
     }
 }
 <br />
-@Html.ActionLink("Back to album list via this ActionLink", "List")
+<a asp-action="Edit" asp-route-id="@Model.Id">Edit this album</a>
+<br/>
+@Html.ActionLink("Back to album list via this ActionLink", "Index")
 <br />
-<a asp-action="List">Back to album list via this TagHelper</a>
+<a asp-action="Index">Back to album list via this TagHelper</a>

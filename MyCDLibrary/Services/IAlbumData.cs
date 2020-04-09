@@ -11,5 +11,6 @@ namespace MyCDLibrary.Services
         IEnumerable<Album> GetAll();
         Album GetAlbumById(int id);
         void Add(Album album);
+        void Update(Album album);
     }
 }

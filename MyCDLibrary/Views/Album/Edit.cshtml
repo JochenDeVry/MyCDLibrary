@@ -1,0 +1,51 @@
+﻿@model MyCDLibrary.Entities.Album
+
+@{
+    if (Model == null)
+    {
+        ViewBag.Title = "Invalid ID";
+    }
+    else
+    {
+        ViewBag.Title = "Edit album ";
+    }
+}
+
+@{
+    if (Model == null)
+    {
+        <div>No album with this ID could be found in the database.</div>
+    }
+    else
+    {
+        <h1>Edit album @Model.Title by @Model.Artist</h1>
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="Id"/>
+            <div>
+                <label asp-for="Artist"></label>
+                <input asp-for="Artist" />
+                <span asp-validation-for="Artist"></span>
+            </div>
+            <div>
+                <label asp-for="Title"></label>
+                <input asp-for="Title" />
+                <span asp-validation-for="Title"></span>
+            </div>
+            <div>
+                <label asp-for="Rating"></label>
+                <select asp-for="Rating" asp-items="Html.GetEnumSelectList<AlbumRating>()"></select>
+            </div>
+            <div>
+                <label asp-for="ReleaseDate"></label>
+                <input type="date" asp-for="ReleaseDate" />
+                <span asp-validation-for="ReleaseDate"></span>
+            </div>
+            <div>
+                <input type="submit" value="Save" />
+            </div>
+        </form>
+        <div>
+            <a asp-action="Index">Back to overview</a>
+        </div>
+    }
+}

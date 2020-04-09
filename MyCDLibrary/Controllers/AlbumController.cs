@@ -36,7 +36,7 @@ namespace MyCDLibrary.Controllers
             var model = _albumData.GetAlbumById(id);
             if (model == null)
             {
-                return RedirectToAction("Index"); // redirects to this controller's action List()
+                return RedirectToAction("Index"); // redirects to this controller's action Index()
             }
             return View("Detail", model);
         }
@@ -62,6 +62,34 @@ namespace MyCDLibrary.Controllers
             }
 
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var model = _albumData.GetAlbumById(id);
+            if (model == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, AlbumEditViewModel model)
+        {
+            var album = _albumData.GetAlbumById(id);
+            if (album != null && ModelState.IsValid)
+            {
+                album.Artist = model.Artist;
+                album.Rating = model.Rating;
+                album.ReleaseDate = model.ReleaseDate;
+                album.Title = model.Title;
+                album.TrackList = model.TrackList;
+                _albumData.Update(album);
+                return RedirectToAction(nameof(Detail), new {id = album.Id});
+            }
+            return View(model);
         }
     }
 }

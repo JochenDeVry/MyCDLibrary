@@ -18,5 +18,7 @@ namespace MyCDLibrary.ViewModels
         public AlbumRating Rating { get; set; }
 
         public DateTime ReleaseDate { get; set; }
+
+        public IEnumerable<Track> TrackList { get; set; }
     }
 }
