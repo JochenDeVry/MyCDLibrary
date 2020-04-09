@@ -1,0 +1,24 @@
+﻿@model Album
+
+<section>
+    <h1>@Model.Title by @Model.Artist</h1>
+    <h2>Tracklist</h2>
+    @{
+        if (Model.TrackList != null) 
+        {
+            int trackNumber = 1;
+            foreach (var track in Model.TrackList)
+            {
+                trackNumber++;
+                <div>trackNumber - @track.ToString()</div>
+            
+            }
+        }
+        else
+        {
+            <div>No tracks provided</div>
+        }
+    }
+    <br />
+    <div>Album rating: @Model.Rating</div>
+</section>
