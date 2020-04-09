@@ -13,12 +13,10 @@ namespace MyCDLibrary.Controllers
     public class AlbumController: Controller
     {
         private IAlbumData _albumData;
-        private IQuoter _quoter;
 
         public AlbumController(IAlbumData albumData, IQuoter quoter)
         {
             _albumData = albumData;
-            _quoter = quoter;
         }
 
         public IActionResult Index()
@@ -27,7 +25,6 @@ namespace MyCDLibrary.Controllers
             //var model = _albumData.GetAll();
             var model = new AlbumViewModel();
             model.Albums = _albumData.GetAll();
-            model.CurrentQuote = _quoter.GetQuoteOfTheDay();
             return View("Index", model);
         }
 

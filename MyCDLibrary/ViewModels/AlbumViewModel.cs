@@ -9,7 +9,5 @@ namespace MyCDLibrary.ViewModels
     public class AlbumViewModel
     {
         public IEnumerable<Album> Albums { get; set; }
-
-        public string CurrentQuote { get; set; }
     }
 }

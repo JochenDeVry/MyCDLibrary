@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
 </head>
-    <body>
-        <div>
-            @RenderBody()
-        </div>
-        <footer>
-            @RenderSection("footer", false)
-        </footer>
+<body>
+    <div>
+        @await Component.InvokeAsync("Quote")
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+    <footer>
+        @RenderSection("footer", false)
+    </footer>
 </body>
 </html>
