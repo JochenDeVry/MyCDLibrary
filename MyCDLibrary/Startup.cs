@@ -47,7 +47,7 @@ namespace MyCDLibrary
                 Path = "/welcome"
             });
 
-            app.UseFileServer();
+            //app.UseFileServer();
             //app.UseStaticFiles(); //this is included in app.UseFileserver()
 
             app.UseRouting();
@@ -72,8 +72,10 @@ namespace MyCDLibrary
                     throw new Exception("This is an intentional error page of the Cd Library web app. Good god!");
                 });
                 endpoints.MapControllerRoute("Default", "{controller}/{action}/{id?}", new {controller = "Album", action = "Index"}); // enables use of MVC via conventional routes, template defined here
-                endpoints.MapControllers(); // enables use of attribute based routing
+                endpoints.MapControllers(); // enables use of attribute based routing, is used when attribute like [Route("[Controller]/[Action]/{id:int?}")] is added to a controller
             });
+
+            app.UseFileServer();
         }
     }
 }

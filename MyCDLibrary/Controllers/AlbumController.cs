@@ -9,7 +9,7 @@ using MyCDLibrary.Services;
 
 namespace MyCDLibrary.Controllers
 {
-    [Route("[Controller]/[Action]/{id:int?}")]
+    //[Route("[Controller]/[Action]/{id:int?}")]
     public class AlbumController: Controller
     {
         private IAlbumData _albumData;
