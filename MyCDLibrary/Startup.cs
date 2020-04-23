@@ -8,6 +8,8 @@ using Microsoft.Extensions.Hosting;
 using MyCDLibrary.Entities;
 using MyCDLibrary.Services;
 using System;
+using Microsoft.AspNetCore.Identity;
+using MyCDLibrarySecurity.Data;
 
 namespace MyCDLibrary
 {
@@ -29,6 +31,28 @@ namespace MyCDLibrary
             services.AddMvc();
             services.AddDbContext<MyCDLibraryContext>(options =>
                 options.UseSqlServer(_configuration.GetConnectionString("MyCDLibraryDatabase")));
+            services.AddControllers();
+            services.AddDbContext<AlbumSecurityContext>(options =>
+            {
+                options.UseSqlServer(_configuration.GetConnectionString("SecurityDatabase"));
+            });
+            services.AddIdentity<User, Role>(options =>
+                {
+                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+                    options.Lockout.MaxFailedAccessAttempts = 4;
+                    options.Lockout.AllowedForNewUsers = true;
+
+                    options.Password.RequireNonAlphanumeric = true;
+                    options.Password.RequiredLength = 8;
+                    options.Password.RequireDigit = true;
+                    options.Password.RequireUppercase = true;
+
+                    options.SignIn.RequireConfirmedEmail = false;
+                    options.SignIn.RequireConfirmedPhoneNumber = false;
+                    options.SignIn.RequireConfirmedAccount = false;
+                })
+                .AddEntityFrameworkStores<AlbumSecurityContext>()
+                .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

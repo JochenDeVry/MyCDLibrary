@@ -10,7 +10,7 @@ namespace MyCDLibrary.Entities
     {
         public DbSet<Album> Albums { get; set; }
 
-        public MyCDLibraryContext(DbContextOptions options) : base(options)
+        public MyCDLibraryContext(DbContextOptions<MyCDLibraryContext> options) : base(options)
         {
 
         }
